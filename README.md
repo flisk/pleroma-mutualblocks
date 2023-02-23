@@ -56,6 +56,6 @@ $ python3 -m mutualblocks
 
 ## License
 
-[GPLv3][COPYING.txt].
+[GPLv3](COPYING.txt).
 
 [1]: https://fba.ryona.agency/
