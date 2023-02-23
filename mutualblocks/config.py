@@ -7,6 +7,7 @@ import sys
 @dataclass
 class Config(object):
     instance_url: str
+    query_domain: str
     bearer_token: str
     autoblock_reason: str = '(automatic) mutual block'
     stale_threshold_days: int = 7

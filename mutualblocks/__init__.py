@@ -153,7 +153,7 @@ class FbaResponse(object):
     blockers: dict[str, list['FbaRule']]
 
     @staticmethod
-    def fetch():
+    def fetch(query_domain: str) -> 'FbaResponse':
         cache_file = Path('~/.cache/update-mutual-blocks.json').expanduser()
 
         try:
@@ -172,7 +172,7 @@ class FbaResponse(object):
         if cache_last_modified := cache.get('http-last-modified'):
             req_headers['if-modified-since'] = cache_last_modified
 
-        req = Request('https://fba.ryona.agency/api?domain=lain.gay', headers=req_headers)
+        req = Request(f'https://fba.ryona.agency/api?domain={query_domain}', headers=req_headers)
 
         with urlopen(req) as res:
             if res.status == 304: # not modified

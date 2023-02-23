@@ -24,7 +24,7 @@ def main() -> None:
     api = PleromaApi(config.instance_url, config.bearer_token)
 
     mrf_config = api.fetch_simple_mrf_config()
-    fba_response = FbaResponse.fetch()
+    fba_response = FbaResponse.fetch(config.query_domain)
 
     (current_auto_rules, current_manual_rules) = current_rules(mrf_config, config.autoblock_reason)
     current_auto_domains = [rule.pattern for rule in current_auto_rules]
