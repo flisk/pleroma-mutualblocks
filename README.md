@@ -4,15 +4,15 @@ Automated mutual blocking for Pleroma and Akkoma instances.
 
 ⚠️ **This software is experimental. Don't use it unless you understand the following:**
 
-* You should have database backups of your instance **before** you run this.
-* Any part of this might break so you'd better be prepared to break out the
-  toolbox and fix things yourself (or report the problems you run into).
+* You should have a database backup of your instance **before** you run this.
+* Any part of this might break. Be prepared to break out the toolbox and fix
+  things yourself, or to report the problems you run into.
 * This tool uses fba.ryona.agency, and it doesn't work without it. If you have
   reservations about that, don't use this software.
 
 ## About
 
-This program automatically creates (and deletes) suspend rules against other
+This program automatically creates and deletes suspend rules against other
 instances that are known by [ryona.agency's fediblock API][1] to be suspending
 your instance. This is to avoid "shadowban dynamics", i.e. users unknowingly
 trying to interact from suspended instances.
@@ -25,7 +25,7 @@ trying to interact from suspended instances.
 * blocking instances are automatically "blocked back" if:
   - there isn't already a manual block against the blocking instance in place
   - the block was last seen no later than a configurable threshold ago
-* blocked instances are automatically unblocked if:
+* automatically blocked instances are unblocked if:
   - the block data has gone stale, i.e. hasn't been seen for longer than the
     configured threshold
 
