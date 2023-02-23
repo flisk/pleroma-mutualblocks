@@ -43,8 +43,9 @@ $ git clone https://github.com/flisk/pleroma-mutualblocks
 $ cd pleroma-mutualblocks
 $ cp config.sample.ini config.ini
 $ chmod 600 config.ini  # this is important, you'll be putting a sensitive secret in here
-# now customize config.ini with an editor of your choice
 ```
+
+After that, customize `config.ini` with an editor of your choice and you're good to go.
 
 ### Operation
 
