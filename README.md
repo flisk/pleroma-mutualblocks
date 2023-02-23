@@ -39,8 +39,8 @@ for type checking and not required just to run the program.
 ### Setup
 
 ```
-$ git clone https://github.com/flisk/pleroma-mutualblock
-$ cd pleroma-mutualblock
+$ git clone https://github.com/flisk/pleroma-mutualblocks
+$ cd pleroma-mutualblocks
 $ cp config.sample.ini config.ini
 $ chmod 600 config.ini  # this is important, you'll be putting a sensitive secret in here
 # now customize config.ini with an editor of your choice
@@ -49,8 +49,8 @@ $ chmod 600 config.ini  # this is important, you'll be putting a sensitive secre
 ### Operation
 
 ```
-$ cd pleroma-mutualblock
-$ python3 -m mutualblock
+$ cd pleroma-mutualblocks
+$ python3 -m mutualblocks
 ```
 
 ## License
