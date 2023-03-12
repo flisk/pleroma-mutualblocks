@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Optional
 import configparser
 import sys
 
@@ -8,7 +9,8 @@ import sys
 class Config(object):
     instance_url: str
     query_domain: str
-    bearer_token: str
+    bearer_token: Optional[str] = None
+    admin_token: Optional[str] = None
     autoblock_reason: str = '(automatic) mutual block'
     stale_threshold_days: int = 7
 

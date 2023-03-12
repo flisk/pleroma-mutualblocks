@@ -21,7 +21,7 @@ def main() -> None:
     """
     config = Config.load('config.ini') 
 
-    api = PleromaApi(config.instance_url, config.bearer_token)
+    api = PleromaApi(config)
 
     mrf_config = api.fetch_simple_mrf_config()
     fba_response = FbaResponse.fetch(config.query_domain)

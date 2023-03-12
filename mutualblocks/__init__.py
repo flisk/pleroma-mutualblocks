@@ -1,3 +1,4 @@
+from .config import Config
 from dataclasses import dataclass
 from pathlib import Path
 from pprint import pprint
@@ -20,15 +21,23 @@ known_policy_sets = [
 ]
 
 
-@dataclass
 class PleromaApi(object):
-    instance_url: str 
-    bearer_token: str
-    
+    instance_url: str
+    auth_headers: dict[str, str]
+
+    def __init__(self, config: Config) -> None:
+        self.instance_url = config.instance_url
+        self.auth_headers = {}
+
+        if config.bearer_token:
+            self.auth_headers['Authorization'] = f'Bearer {config.bearer_token}'
+        elif config.admin_token:
+            self.auth_headers['X-Admin-Token'] = config.admin_token
+        else:
+            raise RuntimeError('need either a bearer_token or admin_token')
+
     def fetch_simple_mrf_config(self) -> 'SimpleMrfConfig':
-        req = Request(f'{self.instance_url}/api/v1/pleroma/admin/config', headers={
-            'Authorization': f'Bearer {self.bearer_token}'
-        })
+        req = Request(f'{self.instance_url}/api/v1/pleroma/admin/config', headers=self.auth_headers)
 
         with urlopen(req) as res:
             if res.status != 200:
@@ -46,12 +55,11 @@ class PleromaApi(object):
         data_json = json.dumps(data_dict)
         data_bytes = data_json.encode()
 
+        headers = self.auth_headers.copy()
+        headers['Content-Type'] = 'application/json; charset=utf-8'
         req = Request(
             f'{self.instance_url}/api/v1/pleroma/admin/config',
-            headers={
-                'Authorization': f'Bearer {self.bearer_token}',
-                'Content-Type': 'application/json; charset=utf-8',
-            },
+            headers=headers,
             method='POST',
             data=data_bytes,
         )
